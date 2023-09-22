@@ -8,7 +8,12 @@
 #include "main.h"
 #include "display7SEG.h"
 
-void clear7SEG();
+void clear7SEG(){
+	HAL_GPIO_WritePin(EN0_GPIO_Port,SEG0_Pin,SET);
+	HAL_GPIO_WritePin(EN1_GPIO_Port,SEG1_Pin,SET);
+	HAL_GPIO_WritePin(EN2_GPIO_Port,SEG2_Pin,SET);
+	HAL_GPIO_WritePin(EN3_GPIO_Port,SEG3_Pin,SET);
+}
 
 void display7SEG(int num){
 	if (num==0){
