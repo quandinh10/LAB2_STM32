@@ -11,8 +11,8 @@ int timer1_counter=0;
 int timer1_flag=0;
 
 void setTimer1(int duration){
-	timer_counter=duration;
-	timer_flag=0;
+	timer1_counter=duration;
+	timer1_flag=0;
 }
 
 void timerRun(){
