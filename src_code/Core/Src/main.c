@@ -91,12 +91,52 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
+  setTimer1(50);
+  setTimer2(100);
+  int status=1;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  if (timer1_flag==1){
+		  setTimer1(50);
+
+		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+		  clear7SEG();
+
+		  if (status == 1){
+			  clearSignal();
+			  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
+			  display7SEG(1);
+			  status = 2;
+		  }
+		  else if (status == 2) {
+			  clearSignal();
+			  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
+			  display7SEG(2);
+			  status = 3;
+		  }
+		  else if (status == 3) {
+			  clearSignal();
+			  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
+			  display7SEG(3);
+			  status=4;
+		  }
+		  else {
+			  clearSignal();
+			  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
+			  display7SEG(0);
+			  status = 1;
+		  }
+	  }
+
+	  if (timer2_flag==1){
+	  		setTimer2(100);
+
+	  		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+	  	}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -229,47 +269,8 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-int counter1 = 50;
-int counter2 = 100;
-int status = 1;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-	counter1--;
-	counter2--;
-	if (counter1 <= 0){
-		counter1 = 50;
-		HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-		clear7SEG();
-
-		if (status == 1){
-			clearSignal();
-			HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
-			display7SEG(1);
-			status = 2;
-		}
-		else if (status == 2) {
-			clearSignal();
-			HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
-			display7SEG(2);
-			status = 3;
-		}
-		else if (status == 3) {
-			clearSignal();
-			HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
-			display7SEG(3);
-			status=4;
-		}
-		else {
-			clearSignal();
-			HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
-			display7SEG(0);
-			status = 1;
-		}
-	}
-
-	if (counter2 <= 0){
-		counter2=100;
-		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-	}
+	timerRun();
 }
 /* USER CODE END 4 */
 
