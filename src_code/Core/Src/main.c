@@ -92,12 +92,12 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
 
-  setTimer1(50);
+  setTimer1(25);
   setTimer2(100);
 
-  const int MAX_LED = 4;
+//  const int MAX_LED = 4;
   int index_led=0;
-  int led_buffer[4]={1,7,5,2};
+  int led_buffer[4]={1,2,3,4};
 
   void update7SEG(int index){
 		switch (index){
@@ -134,7 +134,7 @@ int main(void)
   while (1)
   {
 	  if (timer1_flag==1){
-		  setTimer1(50);
+		  setTimer1(25);
 
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 		  update7SEG(index_led++);
