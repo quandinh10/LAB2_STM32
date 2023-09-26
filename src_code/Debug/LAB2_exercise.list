@@ -565,6 +565,7 @@ int main(void)
 		  setTimer1(50);
  800049a:	2032      	movs	r0, #50	; 0x32
  800049c:	f000 f918 	bl	80006d0 <setTimer1>
+
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
  80004a0:	2120      	movs	r1, #32
  80004a2:	4815      	ldr	r0, [pc, #84]	; (80004f8 <main+0x8c>)
