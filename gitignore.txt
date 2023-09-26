@@ -54,4 +54,4 @@ dkms.conf
 /src_code/debug
 *.pdsprj
 *.pdsbak
-
+*.pdsprj.DESKTOP-88V13N4.dinhq.workspace
