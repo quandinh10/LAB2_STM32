@@ -16,16 +16,6 @@ void clearSignal(){
 	HAL_GPIO_WritePin(EN3_GPIO_Port,EN3_Pin,SET);
 }
 
-void clear7SEG(){
-	HAL_GPIO_WritePin(SEG0_GPIO_Port,SEG0_Pin,SET);
-	HAL_GPIO_WritePin(SEG1_GPIO_Port,SEG1_Pin,SET);
-	HAL_GPIO_WritePin(SEG2_GPIO_Port,SEG2_Pin,SET);
-	HAL_GPIO_WritePin(SEG3_GPIO_Port,SEG3_Pin,SET);
-	HAL_GPIO_WritePin(SEG4_GPIO_Port,SEG4_Pin,SET);
-	HAL_GPIO_WritePin(SEG5_GPIO_Port,SEG5_Pin,SET);
-	HAL_GPIO_WritePin(SEG6_GPIO_Port,SEG6_Pin,SET);
-}
-
 void display7SEG(int num){
 	if (num==0){
 		HAL_GPIO_WritePin(SEG0_GPIO_Port,SEG0_Pin,RESET);
