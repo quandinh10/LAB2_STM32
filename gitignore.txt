@@ -6,7 +6,6 @@
 *.ko
 *.obj
 *.elf
-
 # Linker output
 *.ilk
 *.map
@@ -51,7 +50,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-/src_code/debug
-*.pdsprj
+/src_code/Debug
 *.pdsbak
 *.pdsprj.DESKTOP-88V13N4.dinhq.workspace

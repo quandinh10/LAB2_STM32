@@ -91,50 +91,53 @@ int main(void)
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
-  setTimer1(50);
-  setTimer2(100);
-  int status=1;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  setTimer1(50);
+  setTimer2(100);
+  int status=1;
+
   while (1)
   {
 	  if (timer1_flag==1){
 		  setTimer1(50);
 
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
-		  clear7SEG();
+//		  clear7SEG();
 
-		  if (status == 1){
+		  switch(status){
+		  case 1:
 			  clearSignal();
 			  HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
 			  display7SEG(1);
-			  status = 2;
-		  }
-		  else if (status == 2) {
+			  break;
+
+		  case 2:
 			  clearSignal();
 			  HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
 			  display7SEG(2);
-			  status = 3;
-		  }
-		  else if (status == 3) {
+			  break;
+
+		  case 3:
 			  clearSignal();
 			  HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, RESET);
 			  display7SEG(3);
-			  status=4;
-		  }
-		  else {
+			  break;
+
+		  case 4:
 			  clearSignal();
 			  HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
 			  display7SEG(0);
-			  status = 1;
+			  break;
 		  }
+		  status++;
+		  if (status>4) status=1;
 	  }
 
 	  if (timer2_flag==1){
 	  		setTimer2(100);
-
 	  		HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
 	  	}
     /* USER CODE END WHILE */
