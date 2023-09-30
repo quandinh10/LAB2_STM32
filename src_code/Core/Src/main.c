@@ -121,6 +121,11 @@ int main(void)
 				display7SEG(led_buffer[3]);
 				HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, RESET);
 				break;
+			default:
+				clearSignal();
+				display7SEG(led_buffer[0]);
+				HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
+				break;
 		}
 	}
   /* USER CODE END 2 */
