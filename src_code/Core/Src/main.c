@@ -92,9 +92,6 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim2);
 
-  setTimer1(25);
-  setTimer2(100);
-
 //  const int MAX_LED = 4;
   int index_led = 0;
   int led_buffer[4] = {0,0,0,0};
@@ -136,6 +133,8 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   updateClockBuffer();
+  setTimer1(25);
+  setTimer2(100);
   while (1)
   {
 	  if (timer1_flag==1){
